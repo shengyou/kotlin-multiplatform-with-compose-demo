@@ -4,7 +4,7 @@
 
 ## 相關資源
 
-* 簡報檔：
+* 簡報檔：https://www.slideshare.net/shengyou/kotlin-multiplatform-with-compose
 * 原始碼：https://github.com/shengyou/kotlin-multiplatform-with-compose-demo
 
 ### 警告！
