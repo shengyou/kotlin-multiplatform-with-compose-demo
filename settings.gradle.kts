@@ -1,4 +1,4 @@
-rootProject.name = "MyApplication"
+rootProject.name = "KotlinMultiplatformWithComposeDemo"
 
 include(":androidApp")
 include(":shared")
