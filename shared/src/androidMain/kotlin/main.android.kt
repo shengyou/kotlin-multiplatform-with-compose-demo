@@ -1,5 +1,5 @@
 import androidx.compose.runtime.Composable
+import io.kraftsman.multiplatform.MainApplication
 
-actual fun getPlatformName(): String = "Android"
-
-@Composable fun MainView() = App()
+@Composable
+fun MainView() = MainApplication()
