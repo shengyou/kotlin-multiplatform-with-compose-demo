@@ -15,21 +15,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
-import io.kraftsman.multiplatform.data.Target
-import io.kraftsman.multiplatform.data.User
-import io.kraftsman.multiplatform.functions.getTarget
-import io.kraftsman.multiplatform.ui.screens.desktop.HomeScreen as DesktopHomeScreen
-import io.kraftsman.multiplatform.ui.screens.mobile.HomeScreen as MobileHomeScreen
+import io.kraftsman.multiplatform.screenmodels.LoginScreenModel
 
 @Composable
 fun LoginForm(
     username: MutableState<TextFieldValue>,
     password: MutableState<TextFieldValue>,
+    screenModel: LoginScreenModel
 ) {
-    val navigator = LocalNavigator.currentOrThrow
-
     TextField(
         value = username.value,
         label = { Text(text = "Username") },
@@ -51,22 +44,7 @@ fun LoginForm(
     Spacer(modifier = Modifier.height(20.dp))
 
     Button(
-        onClick = {
-            val user = User(
-                id = 1,
-                username = "sampleuser",
-                password = "samplepassword",
-                email = "sampleuser@sample.com",
-                displayName = "Sample User",
-                profileImageUrl = "https://randomuser.me/api/portraits/men/43.jpg"
-            )
-            val screen = when (getTarget()) {
-                Target.DESKTOP -> DesktopHomeScreen(user)
-                else -> MobileHomeScreen(user)
-            }
-
-            navigator.push(screen)
-        },
+        onClick = { screenModel.login(username.value.text, password.value.text) },
         shape = RoundedCornerShape(50.dp),
         modifier = Modifier.fillMaxWidth().height(50.dp)
     ) {

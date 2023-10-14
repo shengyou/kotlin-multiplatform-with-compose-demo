@@ -17,10 +17,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import io.kraftsman.multiplatform.data.User
 import io.kraftsman.multiplatform.functions.optionsList
 import io.kraftsman.multiplatform.functions.prepareOptionsData
+import io.kraftsman.multiplatform.screenmodels.HomeScreenModel
 import io.kraftsman.multiplatform.ui.components.OptionItem
 import io.kraftsman.multiplatform.ui.components.UserProfile
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +34,7 @@ data class HomeScreen(
 
     @Composable
     override fun Content() {
+        val screenModel = rememberScreenModel { HomeScreenModel(user) }
         var listPrepared by remember { mutableStateOf(false) }
 
         LaunchedEffect(Unit) {
@@ -55,7 +58,7 @@ data class HomeScreen(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    UserProfile(user)
+                    UserProfile(screenModel.user)
                 }
 
                 Column(
