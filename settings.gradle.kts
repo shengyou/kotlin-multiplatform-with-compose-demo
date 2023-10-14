@@ -3,6 +3,7 @@ rootProject.name = "KotlinMultiplatformWithComposeDemo"
 include(":androidApp")
 include(":shared")
 include(":desktopApp")
+include(":server")
 
 pluginManagement {
     repositories {
